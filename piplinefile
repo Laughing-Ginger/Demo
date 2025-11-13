@@ -1,0 +1,25 @@
+pipeline {
+    agent any 
+    tools {
+        jdk 'jdk21'
+    }
+    stages {
+        stage('Check out Source') { 
+            steps {
+                git branch: 'main', url: 'https://github.com/Laughing-Ginger/Demo/'
+            }
+        }
+        stage('Compilation') {
+            steps {
+                echo 'Compiling Java code'
+                sh 'javac Demo.java'
+            }
+        }
+        stage('Execution') {
+            steps {
+                echo 'Executing Java program'
+                sh 'java Demo'
+            }
+        }
+    }
+}
